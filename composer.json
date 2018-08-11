@@ -1,6 +1,7 @@
 {
   "name": "lattlay/laravelcloner",
   "description": "Clone an entire laravel project with ease",
+  "license": "MIT",
   "authors": [
     {
       "name": "Benjamin Dowson",
