@@ -1,0 +1,24 @@
+{
+  "name": "lattlay/laravelcloner",
+  "description": "Clone an entire laravel project with ease",
+  "authors": [
+    {
+      "name": "Benjamin Dowson",
+      "email": "leihouma@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {},
+  "autoload": {
+    "psr-4": {
+      "Lattlay\\Laravelcloner\\": "src"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Lattlay\\Laravelcloner\\LaravelClonerServiceProvider"
+      ]
+    }
+  }
+}
