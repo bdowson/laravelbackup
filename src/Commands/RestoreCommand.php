@@ -3,6 +3,7 @@ namespace Lattlay\LaravelBackup\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Lattlay\LaravelBackup\FilesRestore;
 
 class RestoreCommand extends Command {
 	protected $signature = 'backup:restore';
@@ -16,5 +17,7 @@ class RestoreCommand extends Command {
 		}
 
 		$backup = $this->choice('Which backup would you like to use?', $zips, 0);
+		$restore = new FilesRestore($backup);
+		$restore->restore();
 	}
 }
