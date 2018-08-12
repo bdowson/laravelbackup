@@ -1,6 +1,6 @@
 {
-  "name": "lattlay/laravelcloner",
-  "description": "Clone an entire laravel project with ease",
+  "name": "lattlay/laravelbackup",
+  "description": "Back up and restore your laravel project with ease",
   "license": "MIT",
   "authors": [
     {
@@ -18,7 +18,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Lattlay\\Laravelcloner\\LaravelClonerServiceProvider"
+        "Lattlay\\LaravelBackup\\LaravelBackupServiceProvider"
       ]
     }
   }

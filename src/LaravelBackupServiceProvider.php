@@ -1,9 +1,11 @@
 <?php
-namespace Lattlay\LaravelCloner;
+namespace Lattlay\LaravelBackup;
 
 use Illuminate\Support\ServiceProvider;
+use Lattlay\LaravelBackup\Commands\BackupCommand;
+use Lattlay\LaravelBackup\Commands\RestoreCommand;
 
-class LaravelClonerServiceProvider extends ServiceProvider
+class LaravelBackupServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -13,7 +15,8 @@ class LaravelClonerServiceProvider extends ServiceProvider
     public function boot() {
     	if ($this->app->runningInConsole()) {
             $this->commands([
-                Cloner::class
+                BackupCommand::class,
+                RestoreCommand::class
             ]);
         }
     }
