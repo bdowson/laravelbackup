@@ -2,7 +2,7 @@
 namespace Lattlay\LaravelBackup\Commands;
 
 use Illuminate\Console\Command;
-use Lattlay\LaravelBackup\DatabaseBackup;
+use Lattlay\LaravelBackup\Databases\DatabaseFactory;
 use Lattlay\LaravelBackup\ZIPHandler;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
@@ -11,25 +11,24 @@ class BackupCommand extends Command {
 	protected $signature = 'backup:start';
 	protected $description = 'Backup current Laravel project';
 	private $zip;
-	private $fileBackup;
 	private $databaseBackup;
 
 	public function __construct() {
 		parent::__construct();
 		$backupName = 'backup_' . date('YmdHi');
 		$this->zip = new ZIPHandler($backupName);
-		$this->databaseBackup = new DatabaseBackup($backupName);
+		$this->databaseBackup = DatabaseFactory::getDatabase(config('database.default'), $backupName);
 	}
 
 
 	public function handle() {
 		try {
 			$this->info('Backup Starting');
-			$this->backupDatabase();
+			//$this->backupDatabase();
 			$this->backupFiles();
 			$this->info('Finishing up');
 			$this->zip->closeZip();
-			$this->databaseBackup->deleteTempFile();
+			//$this->databaseBackup->deleteTempFile();
 			$this->info('');
 			$this->info('Backup Complete!');
 		} catch (\Throwable $e) {

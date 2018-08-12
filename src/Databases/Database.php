@@ -1,9 +1,7 @@
 <?php
-namespace Lattlay\LaravelBackup;
+namespace Lattlay\LaravelBackup\Databases;
 
-use Illuminate\Support\Facades\DB;
-
-class DatabaseBackup {
+abstract class Database {
 	private $connection;
 	private $backupName;
 
@@ -31,7 +29,8 @@ class DatabaseBackup {
 				       ' > ' . storage_path('backups/' . $this->backupName) .
 					   '  2>&1 | grep -v "Warning: Using a password"';
 			case 'sqlite':
-				return '';
+				return 'cp ' . config($this->connection . '.database') .
+					   ' ' . storage_path('backups/' . $this->backupName);
 			case 'pgsql':
 				return '';
 			case 'sqlsrv':
