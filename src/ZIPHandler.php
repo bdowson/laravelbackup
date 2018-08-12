@@ -6,8 +6,10 @@ use ZipArchive;
 
 class ZIPHandler {
 	private $zipArchive;
+	private $backupName;
 
-	public function __construct() {
+	public function __construct(string $backupName) {
+		$this->backupName = $backupName . '.zip';
 		$this->zipArchive = new ZipArchive();
 		$this->createNewBackupFile();
 	}
@@ -29,9 +31,8 @@ class ZIPHandler {
 	}
 
 	private function createNewBackupFile(): void {
-		$backupName = 'backup_' . date('YmdHi') . '.zip';
 		$this->createBackupPath();
-		if($this->zipArchive->open(storage_path('backups/') . $backupName, ZipArchive::CREATE) !== true) {
+		if($this->zipArchive->open(storage_path('backups/' . $this->backupName), ZipArchive::CREATE) !== true) {
 			dd('FAIL');
 		}
 	}
