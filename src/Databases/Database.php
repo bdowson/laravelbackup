@@ -2,8 +2,9 @@
 namespace Lattlay\LaravelBackup\Databases;
 
 abstract class Database {
-	private $connection;
-	private $backupName;
+	protected $connection;
+	protected $backupName;
+	protected $dbType;
 
 	public function __construct(string $backupName) {
 		$this->backupName = $backupName . '.database';
@@ -18,26 +19,6 @@ abstract class Database {
 		unlink(storage_path('backups/' . $this->backupName));
 	}
 
-	private function getDumpCommand(): string {
-		switch (config($this->connection . '.driver')) {
-			case 'mysql':
-				return 'mysqldump' .
-				       ' --user=' . config($this->connection . '.username') .
-				       ' --password=' . config($this->connection . '.password') .
-				       ' --add-drop-database ' .
-				       ' --databases ' . config($this->connection . '.database') .
-				       ' > ' . storage_path('backups/' . $this->backupName) .
-					   '  2>&1 | grep -v "Warning: Using a password"';
-			case 'sqlite':
-				return 'cp ' . config($this->connection . '.database') .
-					   ' ' . storage_path('backups/' . $this->backupName);
-			case 'pgsql':
-				return '';
-			case 'sqlsrv':
-				return '';
-			default:
-				throw new \Exception('Unsupported database type');
-		}
-	}
+	public abstract function getDumpCommand(): string;
 
 }

@@ -24,11 +24,11 @@ class BackupCommand extends Command {
 	public function handle() {
 		try {
 			$this->info('Backup Starting');
-			//$this->backupDatabase();
+			$this->backupDatabase();
 			$this->backupFiles();
 			$this->info('Finishing up');
 			$this->zip->closeZip();
-			//$this->databaseBackup->deleteTempFile();
+			$this->databaseBackup->deleteTempFile();
 			$this->info('');
 			$this->info('Backup Complete!');
 		} catch (\Throwable $e) {
@@ -62,5 +62,4 @@ class BackupCommand extends Command {
 			$this->info('');
 			$this->info('File backup complete');
 	}
-
 }

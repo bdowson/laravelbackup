@@ -4,6 +4,7 @@ namespace Lattlay\LaravelBackup\Databases;
 class DatabaseFactory {
 
 	public static function getDatabase(string $databaseDriver, string $backupName): Database {
+		$backupName .= '_' . $databaseDriver;
 		switch ($databaseDriver) {
 			case 'mysql':
 				return new MySQL($backupName);
