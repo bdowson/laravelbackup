@@ -19,6 +19,10 @@ class LaravelBackupServiceProvider extends ServiceProvider
                 RestoreCommand::class
             ]);
         }
+        $configPath = __DIR__ . '/config/config.php';
+
+        $this->publishes([ $configPath => config_path('backup.php')]);
+        $this->mergeConfigFrom( $configPath , 'backup');
     }
     /**
      * Register the application services.

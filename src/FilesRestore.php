@@ -20,11 +20,10 @@ class FilesRestore {
 		if(!File::exists(base_path(basename($this->filepath)))) {
 			throw new \Exception('File does not exist');
 		}
-        $res = $zip->open(base_path(basename($this->filepath)));
-        if ($res) {
+        $restoreZip = $zip->open(base_path(basename($this->filepath)));
+        if($restoreZip) {
             $zip->extractTo(base_path());
             $zip->close();
-            echo 'yay' . PHP_EOL;
         }
 	}
 }
