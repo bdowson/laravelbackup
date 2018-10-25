@@ -1,6 +1,8 @@
 # Laravel Backup
 
-A simple backup and restore package for Laravel 5.
+A simple backup and restore package for Laravel 5. 
+
+Supported database connections: `mysql` 
 
 ## Installation
 
@@ -24,7 +26,7 @@ This plugin has the following options available for configuration:
 
 **backup_files** - *(boolean)* Toggles whether files should be backed up
 
-**backup_database** = *(boolean)* Toggles whether the database should be backed up
+**backup_database** - *(boolean)* Toggles whether the database should be backed up
 
 ## Usage
 

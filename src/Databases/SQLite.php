@@ -7,4 +7,8 @@ class SQLite extends Database  {
 		return 'cp ' . config($this->connection . 'database') . storage_path('backups/' . $this->backupName);
 	}
 
+	public function getRestoreCommand(): string {
+	    return '';
+    }
+
 }

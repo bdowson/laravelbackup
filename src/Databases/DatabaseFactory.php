@@ -9,11 +9,14 @@ class DatabaseFactory {
 			case 'mysql':
 				return new MySQL($backupName);
 			case 'sqlite':
-				return new PostgreSQL($backupName);
+			    throw new \Exception('Unsupported database driver');
+				//return new PostgreSQL($backupName);
 			case 'pgsql':
-				return new PostgreSQL($backupName);
-			case 'sqlsrv':
-				return new SQLServer($backupName);
+			    throw new \Exception('Unsupported database driver');
+				//return new SQLite($backupName);
+            // @todo: Add support for sqlsrv
+			/*case 'sqlsrv':
+				return new SQLServer($backupName);*/
 			default:
 				throw new \Exception('Unsupported database driver');
 		}

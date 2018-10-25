@@ -9,4 +9,8 @@ class PostgreSQL extends Database  {
 		       config($this->connection . '.port') . '/' . config($this->connection . '.database') .
 			   ' > ' . storage_path('backups/' . $this->backupName);
 	}
+
+	public function getRestoreCommand(): string {
+	    return '';
+    }
 }
